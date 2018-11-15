@@ -1,0 +1,55 @@
+DELETE
+FROM Car_part
+WHERE TRUE
+
+DELETE
+FROM Charge_log
+WHERE TRUE
+
+DELETE
+FROM Charging_station
+WHERE TRUE
+
+DELETE
+FROM Location
+WHERE TRUE
+
+DELETE
+FROM "Order"
+WHERE TRUE
+
+DELETE
+FROM Part_order
+WHERE TRUE
+
+DELETE
+FROM Provider
+WHERE TRUE
+
+DELETE
+FROM Provider_part_log
+WHERE TRUE
+
+DELETE
+FROM Repair_log
+WHERE TRUE
+
+DELETE
+FROM Repair_part_log
+WHERE TRUE
+
+DELETE
+FROM Self_driving_car
+WHERE TRUE
+
+DELETE
+FROM User
+WHERE TRUE
+
+DELETE
+FROM Workshop
+WHERE TRUE
+
+DELETE
+FROM Workshop_part_log
+WHERE TRUE
