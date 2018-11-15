@@ -1,6 +1,6 @@
 import random
 import sqlite3
-
+from random import randint as ri
 
 # path = b'D:\Assignment3.sqlite'
 # Connect to database
@@ -15,7 +15,7 @@ c = connection.cursor()
 # Number of records
 N = 30
 # Number of orders
-O_N = 100
+O_N = 5000
 
 # Cities
 cities = ["Innopolis", "Kazan"]
@@ -62,26 +62,20 @@ pid_all = [i for i in range(1, len(car_parts)+1)]
 wid_all = [i for i in range(1, N+1)]
 
 # set of repair log ids
-lid_rep_all = [i for i in range(1, N*10+1)]
+lid_rep_all = [i for i in range(1, O_N+1)]
 
 # set of provider ids
 prid_all = [i for i in range(1, N+1)]
 
 
-def get_datatime():
-    from random import randint as ri
-    if ri(0, 1):
-        if ri(0, 1):
-            datetime = '2018-0{0}-0{1} 0{2}:{3}'.format(ri(6, 9), ri(1, 9), ri(0, 9), ri(10, 59))
-        else:
-            datetime = '2018-0{0}-{1} {2}:{3}'.format(ri(6, 9), ri(10, 28), ri(10, 23), ri(10, 59))
-    else:
-        if ri(0, 1):
-            datetime = '2018-0{0}-0{1} 0{2}:{3}'.format(ri(6, 9), ri(1, 9), ri(0, 9), ri(10, 59))
-        else:
-            datetime = '2018-0{0}-{1} {2}:{3}'.format(ri(6, 9), ri(10, 28), ri(10, 23), ri(10, 59))
+def get_datetime():
 
-    return datetime
+    datetime1 = '2018-0{0}-0{1} 0{2}:{3}'.format(ri(7, 9), ri(1, 9), ri(0, 9), ri(10, 59))
+    datetime2 = '2018-0{0}-{1} {2}:{3}'.format(ri(7, 9), ri(10, 28), ri(10, 23), ri(10, 59))
+    datetime3 = '2018-0{0}-{1} 0{2}:{3}'.format(ri(7, 9), ri(10, 28), ri(0, 9), ri(10, 59))
+    datetime4 = '2018-0{0}-0{1} {2}:{3}'.format(ri(7, 9), ri(1, 9), ri(10, 23), ri(10, 59))
+
+    return [datetime1,datetime2,datetime3,datetime4][ri(0,3)]
 
 
 # Create random locations
@@ -110,7 +104,7 @@ for i in range(O_N):
     fromm = random.choice(list(places))
     to = random.choice(list(places.difference({fromm})))
     distance_to_user = random.randint(100, 30000)
-    datetime = get_datatime()
+    datetime = get_datetime()
     trip_duration = random.randint(10, 150)
     price = trip_duration * 10
     user = random.choice(usernames)
@@ -127,8 +121,8 @@ for i in uid_all:
     c.execute("INSERT INTO Charging_station VALUES (?,?,?,?,?)", (i, sockets_available, price_per_w, gps_location, pshape))
 
 # Create charge log
-for i in range(N*20):
-    datetime = get_datatime()
+for i in range(O_N):
+    datetime = get_datetime()
     price = random.randint(1, 200)
     charge_duration = random.randint(5, 200)
     station = random.choice(uid_all)
@@ -148,7 +142,7 @@ for i in range(N):
 
 # Create Repair log
 for i in lid_rep_all:
-    datetime = get_datatime()
+    datetime = get_datetime()
     repair_duration = random.randint(1, 1000)
     price = random.randint(1, 200)
     car = random.choice(cid_all)
@@ -156,11 +150,14 @@ for i in lid_rep_all:
     c.execute("INSERT INTO Repair_log VALUES (?,?,?,?,?,?)", (i, datetime, repair_duration, price, car, workshop))
 
 # Create Repair part log
-for i in range(N*2):
-    lid = random.choice(lid_rep_all)
-    part = random.choice(pid_all)
-    count = random.randint(1, 20)
-    c.execute("INSERT INTO Repair_part_log VALUES (?,?,?)", (lid, part, count))
+for i in range(O_N):
+    try:
+        lid = random.choice(lid_rep_all)
+        part = random.choice(pid_all)
+        count = random.randint(1, 20)
+        c.execute("INSERT INTO Repair_part_log VALUES (?,?,?)", (lid, part, count))
+    except sqlite3.IntegrityError:
+        continue
 
 # Create random set of parts for Workshop
 n = 1
@@ -204,7 +201,7 @@ for i in prid_all:
 
 # Create Part order
 for i in range(O_N):
-    date = get_datatime().split(' ')[0]
+    date = get_datetime().split(' ')[0]
     count = random.randint(1, 100)
     price = random.randint(1, 200)
     workshop = random.choice(wid_all)
