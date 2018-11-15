@@ -10,6 +10,6 @@ repository with assignment 3
 ```script.sql``` - delete all data from tables
 
 ## ERD
-![](https://github.comER.png/indionapolis/DMD/blob/master/)
+![](https://github.com/indionapolis/DMD/blob/master/ER.png)
 ## Schema
 ![](https://github.com/indionapolis/DMD/blob/master/main.png)
