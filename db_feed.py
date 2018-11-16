@@ -95,7 +95,7 @@ for i, username in enumerate(usernames):
 for i in cid_all:
     color = random.choice(colors)
     type = random.choice(types_of_car)
-    license_plate = chr(random.randint(65, 90)) + str(random.randint(1000, 9999))
+    license_plate = 'A' + chr(random.randint(65, 90)) + str(random.randint(1000, 9999))
     sshape = random.randint(1, 4)
     c.execute("INSERT INTO Self_driving_car VALUES (?,?,?,?,?)", (i, color, type, license_plate, sshape))
 
