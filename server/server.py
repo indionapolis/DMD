@@ -2,7 +2,7 @@ import sqlite3
 from sqlite3 import Error
 from server import server
 
-path = '../Assignment3.sqlite'
+path = '../database/Assignment3.sqlite'
 
 
 def create_connection(db_file):
