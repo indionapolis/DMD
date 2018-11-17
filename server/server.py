@@ -2,7 +2,7 @@ import sqlite3
 from sqlite3 import Error
 from server import server
 
-path = '/Users/Pavel/programs/DMD/Assignment3.sqlite'
+path = '../Assignment3.sqlite'
 
 
 def create_connection(db_file):
@@ -28,7 +28,7 @@ def get_cursor(path):
 @server.route('/3_2/<date>')
 def hello(date):
     cursor = get_cursor(path)
-    with open('/Users/Pavel/programs/DMD/SQL/3_2.sql', 'r') as query:
+    with open('../SQL/3_2.sql', 'r') as query:
         result = '<style>body {font-family: sans-serif; font-size: 20px;}</style>'
         for row in cursor.execute(query.read(), [date]).fetchall():
             for value in row:
