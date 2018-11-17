@@ -9,11 +9,11 @@ repository with assignment 3
 
 ```database/script.sql``` - delete all data from tables
 
-```server/server.py``` - ```flask``` server for implemented queries
+```server/server.py``` - ```flask``` server for implemented the queries
 
 ```SQL/DDL.sql``` - description of database models
 
-```SQL/3_n (n:1-10)``` - implementation of queries
+```SQL/3_n (n:1-10)``` - implementation of the queries
 
 ## ERD
 ![](https://github.com/indionapolis/DMD/blob/master/src/ER.png)
