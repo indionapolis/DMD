@@ -4,7 +4,7 @@ from random import randint as ri
 
 # path = b'D:\Assignment3.sqlite'
 # Connect to database
-path = '/Users/Pavel/programs/DMD/Assignment3.sqlite'
+path = '/Users/Pavel/programs/DMD/database/Assignment3.sqlite'
 
 
 def generate_data():
@@ -102,7 +102,7 @@ def generate_data():
     for i in range(O_N):
         fromm = random.choice(list(places))
         to = random.choice(list(places.difference({fromm})))
-        distance_to_user = random.randint(100, 30000)
+        distance_to_user = random.randint(100, 1500)
         datetime = get_datetime()
         trip_duration = random.randint(10, 150)
         price = trip_duration * 10
