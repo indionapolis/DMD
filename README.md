@@ -3,6 +3,8 @@ repository with assignment 3
 
 ## Usage
 
+```server/server.py``` - ```flask``` server for implemented queries
+
 ```db_feed.py``` - script to create random data setup 
 
 ```SQL/DDL.sql``` - description of database models
