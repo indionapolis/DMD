@@ -4,7 +4,9 @@ from random import randint as ri
 
 # path = b'D:\Assignment3.sqlite'
 # Connect to database
-path = '/Users/Pavel/programs/DMD/database/Assignment3.sqlite'
+BASE = '/Users/Pavel/programs/'
+
+path = '{}DMD/database/Assignment3.sqlite'.format(BASE)
 
 
 def generate_data():
