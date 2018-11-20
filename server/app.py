@@ -1,19 +1,13 @@
 import sqlite3
 from sqlite3 import Error
 from flask import Flask
+import pprint
+from json import dumps
 
 server = Flask(__name__)
 
-BASE = '/Users/Pavel/programs/'
-
+BASE = '../../'
 path = '{}DMD/database/Assignment3.sqlite'.format(BASE)
-
-style = '<style>body {' \
-        'font-family: sans-serif; ' \
-        'font-size: 20px; ' \
-        'text-align: center; ' \
-        'background-color: GAINSBORO' \
-        '}</style>'
 
 
 def create_connection(db_file):
@@ -36,31 +30,41 @@ def get_cursor(path):
     return connection.cursor()
 
 
+def get_json_data(table):
+    rows = table.fetchall()
+    desc = table.description
+
+    data = {}
+    for i, column in enumerate(desc):
+        data[column[0]] = [j[i] for j in rows]
+
+    pprint.pprint(data)
+
+    return dumps(data)
+
+
 @server.route('/3_2/<date>')
 def query3_2(date):
     cursor = get_cursor(path)
     with open('{}DMD/SQL/3_2.sql'.format(BASE), 'r') as query:
-        result = style
-        for row in cursor.execute(query.read(), [date]).fetchall():
-            for value in row:
-                result += str(value)
-            result += '<br>'
+        table = cursor.execute(query.read(), [date])
 
-        cursor.close()
-        return result
+        return get_json_data(table)
+
+
+@server.route('/3_3/<date>')
+def query3_3(date):
+    cursor = get_cursor(path)
+    with open('{}DMD/SQL/3_3.sql'.format(BASE), 'r') as query:
+        table = cursor.execute(query.read(), [date, date])
+
+        return get_json_data(table)
 
 
 @server.route('/3_5/<date>')
 def query3_5(date):
     cursor = get_cursor(path)
     with open('{}DMD/SQL/3_5.sql'.format(BASE), 'r') as query:
-        result = style
-        re = cursor.execute(query.read(), [date]).fetchall()
+        table = cursor.execute(query.read(), [date])
 
-        for row in re:
-            for value in row:
-                result += str(value) + ' '
-            result += '<br>'
-
-        cursor.close()
-        return result
+        return get_json_data(table)
