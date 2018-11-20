@@ -30,7 +30,7 @@ def get_cursor(path):
     return connection.cursor()
 
 
-def get_json_data(table):
+def table_to_json(table):
     rows = table.fetchall()
     desc = table.description
 
@@ -49,7 +49,7 @@ def query3_2(date):
     with open('{}DMD/SQL/3_2.sql'.format(BASE), 'r') as query:
         table = cursor.execute(query.read(), [date])
 
-        return get_json_data(table)
+        return table_to_json(table)
 
 
 @server.route('/3_3/<date>')
@@ -58,7 +58,7 @@ def query3_3(date):
     with open('{}DMD/SQL/3_3.sql'.format(BASE), 'r') as query:
         table = cursor.execute(query.read(), [date, date])
 
-        return get_json_data(table)
+        return table_to_json(table)
 
 
 @server.route('/3_5/<date>')
@@ -67,4 +67,31 @@ def query3_5(date):
     with open('{}DMD/SQL/3_5.sql'.format(BASE), 'r') as query:
         table = cursor.execute(query.read(), [date])
 
-        return get_json_data(table)
+        return table_to_json(table)
+
+
+@server.route('/3_8/<date>')
+def query3_8(date):
+    cursor = get_cursor(path)
+    with open('{}DMD/SQL/3_8.sql'.format(BASE), 'r') as query:
+        table = cursor.execute(query.read(), [date])
+
+        return table_to_json(table)
+
+
+@server.route('/3_9/')
+def query3_9(date):
+    cursor = get_cursor(path)
+    with open('{}DMD/SQL/3_9.sql'.format(BASE), 'r') as query:
+        table = cursor.execute(query.read(), [date, date])
+
+        return table_to_json(table)
+
+
+@server.route('/3_10/')
+def query3_10(date):
+    cursor = get_cursor(path)
+    with open('{}DMD/SQL/3_10.sql'.format(BASE), 'r') as query:
+        table = cursor.execute(query.read(), [date])
+
+        return table_to_json(table)
