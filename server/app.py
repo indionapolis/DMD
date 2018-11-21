@@ -1,3 +1,4 @@
+import os
 import sqlite3
 from sqlite3 import Error
 from flask import Flask
@@ -6,8 +7,8 @@ from json import dumps
 
 server = Flask(__name__)
 
-BASE = '../../'
-path = '{}DMD/database/Assignment3.sqlite'.format(BASE)
+BASE = '../'
+path = '{}database/Assignment3.sqlite'.format(BASE)
 
 
 def create_connection(db_file):
@@ -43,10 +44,15 @@ def table_to_json(table):
     return dumps(data)
 
 
+@server.route('/')
+def hello():
+    return '<h1 style="color:green;text-align:center;">Hello</h1>'
+
+
 @server.route('/3_2/<date>')
 def query3_2(date):
     cursor = get_cursor(path)
-    with open('{}DMD/SQL/3_2.sql'.format(BASE), 'r') as query:
+    with open('{}SQL/3_2.sql'.format(BASE), 'r') as query:
         table = cursor.execute(query.read(), [date])
 
         return table_to_json(table)
@@ -55,7 +61,7 @@ def query3_2(date):
 @server.route('/3_3/<date>')
 def query3_3(date):
     cursor = get_cursor(path)
-    with open('{}DMD/SQL/3_3.sql'.format(BASE), 'r') as query:
+    with open('{}SQL/3_3.sql'.format(BASE), 'r') as query:
         table = cursor.execute(query.read(), [date, date])
 
         return table_to_json(table)
@@ -64,7 +70,7 @@ def query3_3(date):
 @server.route('/3_5/<date>')
 def query3_5(date):
     cursor = get_cursor(path)
-    with open('{}DMD/SQL/3_5.sql'.format(BASE), 'r') as query:
+    with open('{}SQL/3_5.sql'.format(BASE), 'r') as query:
         table = cursor.execute(query.read(), [date])
 
         return table_to_json(table)
@@ -73,7 +79,7 @@ def query3_5(date):
 @server.route('/3_8/<date>')
 def query3_8(date):
     cursor = get_cursor(path)
-    with open('{}DMD/SQL/3_8.sql'.format(BASE), 'r') as query:
+    with open('{}SQL/3_8.sql'.format(BASE), 'r') as query:
         table = cursor.execute(query.read(), [date])
 
         return table_to_json(table)
@@ -82,7 +88,7 @@ def query3_8(date):
 @server.route('/3_9/')
 def query3_9(date):
     cursor = get_cursor(path)
-    with open('{}DMD/SQL/3_9.sql'.format(BASE), 'r') as query:
+    with open('{}SQL/3_9.sql'.format(BASE), 'r') as query:
         table = cursor.execute(query.read(), [date, date])
 
         return table_to_json(table)
@@ -91,7 +97,11 @@ def query3_9(date):
 @server.route('/3_10/')
 def query3_10(date):
     cursor = get_cursor(path)
-    with open('{}DMD/SQL/3_10.sql'.format(BASE), 'r') as query:
+    with open('{}SQL/3_10.sql'.format(BASE), 'r') as query:
         table = cursor.execute(query.read(), [date])
 
         return table_to_json(table)
+
+
+if __name__ == '__main__':
+    server.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT'))
