@@ -34,7 +34,7 @@ function open_popup(id) {
     height_offset = 0;
     top_offset = 0;
 
-    getData().then((d) => console.log`${d}`);
+    getData().then((d) => console.log(d));
 
     // calculations:from
     start_top = is_mobile ? obj_rect.top * mobile_coeff_w : obj_rect.top;
