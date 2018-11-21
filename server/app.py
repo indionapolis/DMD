@@ -1,6 +1,6 @@
 import time
 import os
-
+from flask import make_response
 from flask import Flask
 from json import dumps
 import sqlite3
@@ -46,13 +46,16 @@ def table_to_json(table):
 
 @server.route('/')
 def hello():
-    return '<head>' \
+    data = '<head>' \
            '<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">' \
            '<link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">' \
            '</head>' \
            '<h1 style="color:green;text-align:center;font-family:\'Abril Fatface\',cursive;">Hello</h1>' \
            '<h2 style="color:red;text-align:center;font-family:\'Faster One\', cursive">' \
            'time since start up: {} min</h2>'.format(int((time.time() - start_time)//60))
+    resp = make_response(data)
+    resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+    return resp
 
 
 @server.route('/3_2/<date>')
@@ -61,7 +64,9 @@ def query3_2(date):
     with open('{}SQL/3_2.sql'.format(BASE), 'r') as query:
         table = cursor.execute(query.read(), [date])
 
-        return table_to_json(table)
+        resp = make_response(table_to_json(table))
+        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        return resp
 
 
 @server.route('/3_3/<date>')
@@ -70,7 +75,9 @@ def query3_3(date):
     with open('{}SQL/3_3.sql'.format(BASE), 'r') as query:
         table = cursor.execute(query.read(), [date, date])
 
-        return table_to_json(table)
+        resp = make_response(table_to_json(table))
+        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        return resp
 
 
 @server.route('/3_5/<date>')
@@ -79,7 +86,9 @@ def query3_5(date):
     with open('{}SQL/3_5.sql'.format(BASE), 'r') as query:
         table = cursor.execute(query.read(), [date])
 
-        return table_to_json(table)
+        resp = make_response(table_to_json(table))
+        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        return resp
 
 
 @server.route('/3_6/')
@@ -88,7 +97,9 @@ def query3_6():
     with open('{}SQL/3_6.sql'.format(BASE), 'r') as query:
         table = cursor.execute(query.read())
 
-        return table_to_json(table)
+        resp = make_response(table_to_json(table))
+        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        return resp
 
 
 @server.route('/3_8/<date>')
@@ -97,7 +108,9 @@ def query3_8(date):
     with open('{}SQL/3_8.sql'.format(BASE), 'r') as query:
         table = cursor.execute(query.read(), [date])
 
-        return table_to_json(table)
+        resp = make_response(table_to_json(table))
+        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        return resp
 
 
 @server.route('/3_9/')
@@ -106,7 +119,9 @@ def query3_9():
     with open('{}SQL/3_9.sql'.format(BASE), 'r') as query:
         table = cursor.execute(query.read())
 
-        return table_to_json(table)
+        resp = make_response(table_to_json(table))
+        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        return resp
 
 
 @server.route('/3_10/')
@@ -115,7 +130,9 @@ def query3_10():
     with open('{}SQL/3_10.sql'.format(BASE), 'r') as query:
         table = cursor.execute(query.read())
 
-        return table_to_json(table)
+        resp = make_response(table_to_json(table))
+        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        return resp
 
 
 if __name__ == '__main__':
