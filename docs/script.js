@@ -28,7 +28,7 @@ function open_popup(id) {
     let blocker = document.getElementById("popup");
     let cover = document.getElementById("cover");
     let page = document.getElementsByTagName("main")[0];
-    let content = "";
+    let content = "loading";
     current_id = id;
     // action on whether change height and content of page or not
     height_offset = 0;
