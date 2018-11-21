@@ -1,4 +1,5 @@
 let is_mobile = screen.width <= 450 ? 1 : 0;
+let block = 0;
 
 // for popup
 let start_top, start_left, start_width, start_height;
@@ -13,12 +14,17 @@ let mobile_coeff_w = 100 / window.innerWidth;
 
 // for crootilka (крутилка): offset = number
 let top_offset = 0, height_offset = 0;
-async function getData() {
-    let q = await fetch('https://dmd-server-app.herokuapp.com/3_2/2018-09-09', {method: 'GET', headers: new Headers({'Access-Control-Allow-Origin': "*"})});
-    return await q.json();
-}
+const getData = async () => {
+    const q = await fetch('https://dmd-server-app.herokuapp.com/3_2/2018-09-09');
+    const t = await q.json();
+    console.log`${t}`;
+    return t;
+};
+
+document.getElementsByClassName("scrollable").onClick = () => {block = 1};
 
 function open_popup(id) {
+    if (block === 1) return;
     let main = document.getElementsByTagName("body")[0];
     let obj_rect = document.getElementById(id).getBoundingClientRect();
     let blocker = document.getElementById("popup");
@@ -29,13 +35,9 @@ function open_popup(id) {
     // action on whether change height and content of page or not
     height_offset = 0;
     top_offset = 0;
-    // content = 'data loading';
-    if (content === '') {
-        console.log`kek, lol`;
-        getData().then((data) => {
-            content = data.toString();
-        });
-    }
+
+    getData();
+
     // calculations:from
     start_top = is_mobile ? obj_rect.top * mobile_coeff_w : obj_rect.top;
     start_left = is_mobile ? obj_rect.left * mobile_coeff_w : obj_rect.left;

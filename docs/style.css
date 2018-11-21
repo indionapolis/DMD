@@ -51,6 +51,26 @@ main {
     background-color: #fff;
 }
 
+.text {
+    display: inline-block;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    white-space: nowrap;
+}
+
+.scrollable {
+    width: 50px;
+    text-align: center;
+    border: none;
+    background-color: #3c3c3c;
+    color: #cdcdcd;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
 /* sub-modules */
 .main_left {
     float: left;
