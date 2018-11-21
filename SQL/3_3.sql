@@ -1,4 +1,5 @@
 -- 3.3
+-- Using "Order" we check how many cars were occupied during the time intervals
 SELECT CAST(ROUND(CAST(SUM(Morning)*100 AS float)/(SELECT CAST(COUNT(*) AS float) FROM Self_driving_car))AS int) AS Morning,
        CAST(ROUND(CAST(SUM(Afternoon)*100 AS float)/(SELECT CAST(COUNT(*) AS float) FROM Self_driving_car))AS int) AS Afternoon,
        CAST(ROUND(CAST(SUM(Evening)*100 AS float)/(SELECT CAST(COUNT(*) AS float) FROM Self_driving_car))AS int) AS Evening
@@ -66,6 +67,6 @@ FROM (SELECT car, MAX(CASE WHEN
           )
       ) THEN 1 ELSE 0 END) AS Evening
 FROM "Order"
-WHERE date(datetime) >= date(?) and
-      date(datetime) < date(?, '+7 day')
+WHERE date(datetime) >= date(?) and -- date parameter
+      date(datetime) < date(?, '+7 day') -- date parameter
 GROUP BY car);

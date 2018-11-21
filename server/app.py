@@ -76,6 +76,15 @@ def query3_5(date):
         return table_to_json(table)
 
 
+@server.route('/3_6/')
+def query3_6():
+    cursor = get_cursor(path)
+    with open('{}SQL/3_6.sql'.format(BASE), 'r') as query:
+        table = cursor.execute(query.read())
+
+        return table_to_json(table)
+
+
 @server.route('/3_8/<date>')
 def query3_8(date):
     cursor = get_cursor(path)
@@ -86,19 +95,19 @@ def query3_8(date):
 
 
 @server.route('/3_9/')
-def query3_9(date):
+def query3_9():
     cursor = get_cursor(path)
     with open('{}SQL/3_9.sql'.format(BASE), 'r') as query:
-        table = cursor.execute(query.read(), [date, date])
+        table = cursor.execute(query.read())
 
         return table_to_json(table)
 
 
 @server.route('/3_10/')
-def query3_10(date):
+def query3_10():
     cursor = get_cursor(path)
     with open('{}SQL/3_10.sql'.format(BASE), 'r') as query:
-        table = cursor.execute(query.read(), [date])
+        table = cursor.execute(query.read())
 
         return table_to_json(table)
 
