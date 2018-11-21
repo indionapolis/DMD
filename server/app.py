@@ -1,19 +1,16 @@
-import sqlite3
-from sqlite3 import Error
+import time
+import os
+
 from flask import Flask
+from json import dumps
+import sqlite3
 
 server = Flask(__name__)
 
-BASE = '/Users/Pavel/programs/'
+start_time = 0
 
-path = '{}DMD/database/Assignment3.sqlite'.format(BASE)
-
-style = '<style>body {' \
-        'font-family: sans-serif; ' \
-        'font-size: 20px; ' \
-        'text-align: center; ' \
-        'background-color: GAINSBORO' \
-        '}</style>'
+BASE = '../'
+path = '{}database/Assignment3.sqlite'.format(BASE)
 
 
 def create_connection(db_file):
@@ -25,7 +22,7 @@ def create_connection(db_file):
     try:
         conn = sqlite3.connect(db_file)
         return conn
-    except Error as e:
+    except sqlite3.Error as e:
         print(e)
 
     return None
@@ -36,31 +33,91 @@ def get_cursor(path):
     return connection.cursor()
 
 
+def table_to_json(table):
+    rows = table.fetchall()
+    desc = table.description
+
+    data = {}
+    for i, column in enumerate(desc):
+        data[column[0]] = [j[i] for j in rows]
+
+    return dumps(data)
+
+
+@server.route('/')
+def hello():
+    return '<head>' \
+           '<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">' \
+           '<link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">' \
+           '</head>' \
+           '<h1 style="color:green;text-align:center;font-family:\'Abril Fatface\',cursive;">Hello</h1>' \
+           '<h2 style="color:red;text-align:center;font-family:\'Faster One\', cursive">' \
+           'time since start up: {} min</h2>'.format(int((time.time() - start_time)//60))
+
+
 @server.route('/3_2/<date>')
 def query3_2(date):
     cursor = get_cursor(path)
-    with open('{}DMD/SQL/3_2.sql'.format(BASE), 'r') as query:
-        result = style
-        for row in cursor.execute(query.read(), [date]).fetchall():
-            for value in row:
-                result += str(value)
-            result += '<br>'
+    with open('{}SQL/3_2.sql'.format(BASE), 'r') as query:
+        table = cursor.execute(query.read(), [date])
 
-        cursor.close()
-        return result
+        return table_to_json(table)
+
+
+@server.route('/3_3/<date>')
+def query3_3(date):
+    cursor = get_cursor(path)
+    with open('{}SQL/3_3.sql'.format(BASE), 'r') as query:
+        table = cursor.execute(query.read(), [date, date])
+
+        return table_to_json(table)
 
 
 @server.route('/3_5/<date>')
 def query3_5(date):
     cursor = get_cursor(path)
-    with open('{}DMD/SQL/3_5.sql'.format(BASE), 'r') as query:
-        result = style
-        re = cursor.execute(query.read(), [date]).fetchall()
+    with open('{}SQL/3_5.sql'.format(BASE), 'r') as query:
+        table = cursor.execute(query.read(), [date])
 
-        for row in re:
-            for value in row:
-                result += str(value) + ' '
-            result += '<br>'
+        return table_to_json(table)
 
-        cursor.close()
-        return result
+
+@server.route('/3_6/')
+def query3_6():
+    cursor = get_cursor(path)
+    with open('{}SQL/3_6.sql'.format(BASE), 'r') as query:
+        table = cursor.execute(query.read())
+
+        return table_to_json(table)
+
+
+@server.route('/3_8/<date>')
+def query3_8(date):
+    cursor = get_cursor(path)
+    with open('{}SQL/3_8.sql'.format(BASE), 'r') as query:
+        table = cursor.execute(query.read(), [date])
+
+        return table_to_json(table)
+
+
+@server.route('/3_9/')
+def query3_9():
+    cursor = get_cursor(path)
+    with open('{}SQL/3_9.sql'.format(BASE), 'r') as query:
+        table = cursor.execute(query.read())
+
+        return table_to_json(table)
+
+
+@server.route('/3_10/')
+def query3_10():
+    cursor = get_cursor(path)
+    with open('{}SQL/3_10.sql'.format(BASE), 'r') as query:
+        table = cursor.execute(query.read())
+
+        return table_to_json(table)
+
+
+if __name__ == '__main__':
+    start_time = time.time()
+    server.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT'))

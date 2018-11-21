@@ -15,6 +15,8 @@ repository with assignment 3
 
 ```SQL/3_n (n:1-10)``` - implementation of the queries
 
+```Dockerfile``` - heroku container:push web -a dmd-server-app
+
 ## ERD
 ![](https://github.com/indionapolis/DMD/blob/master/src/ER.png)
 ## Schema
