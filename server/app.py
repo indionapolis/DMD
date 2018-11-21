@@ -1,11 +1,13 @@
+import time
 import os
-import sqlite3
-from sqlite3 import Error
+
 from flask import Flask
-import pprint
 from json import dumps
+import sqlite3
 
 server = Flask(__name__)
+
+start_time = 0
 
 BASE = '../'
 path = '{}database/Assignment3.sqlite'.format(BASE)
@@ -20,7 +22,7 @@ def create_connection(db_file):
     try:
         conn = sqlite3.connect(db_file)
         return conn
-    except Error as e:
+    except sqlite3.Error as e:
         print(e)
 
     return None
@@ -39,14 +41,18 @@ def table_to_json(table):
     for i, column in enumerate(desc):
         data[column[0]] = [j[i] for j in rows]
 
-    pprint.pprint(data)
-
     return dumps(data)
 
 
 @server.route('/')
 def hello():
-    return '<h1 style="color:green;text-align:center;">Hello</h1>'
+    return '<head>' \
+           '<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">' \
+           '<link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">' \
+           '</head>' \
+           '<h1 style="color:green;text-align:center;font-family:\'Abril Fatface\',cursive;">Hello</h1>' \
+           '<h2 style="color:red;text-align:center;font-family:\'Faster One\', cursive">' \
+           'time since start up: {} min</h2>'.format(int((time.time() - start_time)//60))
 
 
 @server.route('/3_2/<date>')
@@ -113,4 +119,5 @@ def query3_10():
 
 
 if __name__ == '__main__':
+    start_time = time.time()
     server.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT'))
