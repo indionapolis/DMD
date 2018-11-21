@@ -1,5 +1,4 @@
 let is_mobile = screen.width <= 450 ? 1 : 0;
-let block = 0;
 
 // for popup
 let start_top, start_left, start_width, start_height;
@@ -17,14 +16,13 @@ let top_offset = 0, height_offset = 0;
 const getData = async () => {
     const q = await fetch('https://dmd-server-app.herokuapp.com/3_2/2018-09-09');
     const t = await q.json();
-    console.log`${t}`;
+    console.log("t");
     return t;
 };
 
 document.getElementsByClassName("scrollable").onClick = () => {block = 1};
 
 function open_popup(id) {
-    if (block === 1) return;
     let main = document.getElementsByTagName("body")[0];
     let obj_rect = document.getElementById(id).getBoundingClientRect();
     let blocker = document.getElementById("popup");
@@ -36,7 +34,7 @@ function open_popup(id) {
     height_offset = 0;
     top_offset = 0;
 
-    getData();
+    getData().then((d) => console.log`${d}`);
 
     // calculations:from
     start_top = is_mobile ? obj_rect.top * mobile_coeff_w : obj_rect.top;
