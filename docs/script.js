@@ -18,10 +18,10 @@ const getData = async () => {
     return await q.json();
 };
 
-let out2 = "loading";
+let out2 = "loading2";
 
 document.getElementById("2").innerHTML = out2;
-getData().then((d) => out2 = d["OUTPUT"][0].toString());
+getData().then((d) => document.getElementById("2").innerHTML = d["OUTPUT"][0].toString());
 
 function open_popup(id) {
     let main = document.getElementsByTagName("body")[0];
