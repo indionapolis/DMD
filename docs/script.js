@@ -102,7 +102,7 @@ for (let i = 1; i < 11; ++i) {
                 out[i - 1].innerHTML = "<img style=\"height: 20px; width: 20px;margin-top:7px;\" src=\"WaitCover.gif\">";
                 if (!isNaN(document.getElementById(`mm${i}`).value)) {
                     let idate = Number(document.getElementById(`mm${i}`).value).toString();
-                    if (document.getElementById(`mm${i}`).value.length < 2) {
+                    if (idate < 10) {
                         idate = "0" + document.getElementById(`mm${i}`).value;
                         document.getElementById(`mm${i}`).value = idate;
                     }
@@ -131,7 +131,7 @@ for (let i = 1; i < 11; ++i) {
                 out[i - 1].innerHTML = "<img style=\"height: 20px; width: 20px;margin-top:7px;\" src=\"WaitCover.gif\">";
                 if (!isNaN(document.getElementById(`dd${i}`).value)) {
                     let idate = Number(document.getElementById(`dd${i}`).value).toString();
-                    if (document.getElementById(`dd${i}`).value.length < 2) {
+                    if (idate < 10) {
                         idate = "0" + document.getElementById(`dd${i}`).value;
                         document.getElementById(`dd${i}`).value = idate;
                     }
@@ -146,7 +146,7 @@ for (let i = 1; i < 11; ++i) {
                     if (i === 2)
                         getData(i, `${document.getElementById(`mm${i}`).value}-${idate}`).then((d) => out[i - 1].innerHTML = d["OUTPUT"].map(q => `<div style="width: 100%">${q}</div>`).join(""));
                     else if (i === 8)
-                        getData(i, `${base_date}`).then((d) => {
+                        getData(i, `${document.getElementById(`mm${i}`).value}-${idate}`).then((d) => {
                             out[i - 1].innerHTML = '';
                             for (let x = 0; x < d['user'].length; ++x)
                                 out[i - 1].innerHTML = `${out[i - 1].innerHTML}<div style="width: 100%">${d['user'][x]}: ${d['amount'][x]}</div>`
