@@ -1,5 +1,6 @@
 let is_mobile = screen.width <= 450 ? 1 : 0;
 let base_date = "07-01";
+let out = [];
 
 // for popup
 let start_top, start_left, start_width, start_height;
@@ -14,57 +15,112 @@ let mobile_coeff_w = 100 / window.innerWidth;
 
 // for crootilka (крутилка): offset = number
 let top_offset = 0, height_offset = 0;
-const getData = async (date) => {
-    const q = await fetch('https://dmd-server-app.herokuapp.com/3_2/2018-' + date);
+const getData = async (id, date) => {
+    const q = await fetch(`https://dmd-server-app.herokuapp.com/3_${id.toString()}/2018-${date}`);
     return await q.json();
 };
 
-// in cycle --
+// init all
 
-let out2 = document.getElementById("2");
-out2.innerHTML = "loadingloadingloadingloadingloadi\nngloadingloadingloadingl\noadingloadingloadingloadingloa\ndingloadingloadingloadingloading\nloadingloadingloading\nloadingloadingloadingloa\ndingloading\nnaN";
-getData(base_date).then((d) => out2.innerHTML = d["OUTPUT"].map(q => `<div>${q}</div>`).join(""));
+for (let i = 1; i < 11; ++i) {
+    // generate card and content
+    new Promise((resolve) => {
+        // render card
+        let input, output;
+        output =
+            `
+            <div style="display: inline-block; font-weight: bold">Output</div>:
+            <div id="${i}" style="width: 200px;"></div>
+        `;
+        if (i === 2) {
+            input =
+                `
+                <div style="display: inline-block; font-weight: bold">Input</div> 
+                <div style="display: inline-block;font-size: 11px; color: #828282;">(2018-07-01 - 2018-09-31)</div>:<br>
+                <div>
+                    2018
+                    / <input type="text" maxlength="2" minlength="2" datatype="number" title="Scroll this or change value manually" class="text scrollable" id="mm${i}" placeholder="mm" value="07">
+                    / <input type="text" maxlength="2" minlength="2" title="Scroll this or change value manually" class="text scrollable" id="dd${i}" placeholder="dd" value="01">
+                </div>
+            `;
+        }
+        else if (i === 10) {
+            input =
+                `
+                    <div style="display: inline-block; font-weight: bold">Input</div>:
+                    <div style="width: 100%; margin-bottom: 10px; margin-top: 6px;">
+                        Cost of repairs and charging of cars
+                    </div>
+                `;
+        }
+        else {
+            input = "elvirka privet)))))))";
+            output = "";
+        }
 
-// --
 
-let mm = document.getElementById("mm");
-let dd = document.getElementById("dd");
+        document.getElementById('apocalypse').innerHTML +=
+            `
+            <div class="card rounded">
+                <div id="in1" onclick=""></div>
+                <h1 style="margin-bottom: 10px">Query 3.${i}</h1>
+                ${input}
+                ${output}
+            </div>
+        `;
+        // returns info that promise is handled
+        resolve();
+    }).then(() => {
+        // generate outer content
+        out = [...out, document.getElementById(i.toString())];
 
-mm.onchange = () => {
-    if (!isNaN(mm.value)) {
-        let idate = mm.value;
-        if (mm.value.length < 2) {
-            idate = "0" + mm.value;
-        }
-        if (Number(mm.value) < 7) {
-            idate = "07";
-            mm.value = idate;
-        }
-        if (Number(mm.value) > 9) {
-            idate = "09";
-            mm.value = idate;
-        }
-        getData(`${idate}-${dd.value}`).then((d) => out2.innerHTML = d["OUTPUT"].map(q => `<div>${q}</div>`).join(""));
-    }
-};
+        if (i === 2) {
+            getData(i, `${base_date}`).then((d) => out[i - 1].innerHTML = d["OUTPUT"].map(q => `<div style="width: 150px">${q}</div>`).join(""));
 
-dd.onchange = () => {
-    if (!isNaN(dd.value)) {
-        let idate = dd.value;
-        if (dd.value.length < 2) {
-            idate = "0" + dd.value;
+            document.getElementById(`mm${i}`).onchange = () => {
+                if (!isNaN(document.getElementById(`mm${i}`).value)) {
+                    let idate = Number(document.getElementById(`mm${i}`).value).toString();
+                    if (document.getElementById(`mm${i}`).value.length < 2) {
+                        idate = "0" + document.getElementById(`mm${i}`).value;
+                        document.getElementById(`mm${i}`).value = idate;
+                    }
+                    if (Number(document.getElementById(`mm${i}`).value) < 7) {
+                        idate = "07";
+                        document.getElementById(`mm${i}`).value = idate;
+                    }
+                    if (Number(document.getElementById(`mm${i}`).value) > 9) {
+                        idate = "09";
+                        document.getElementById(`mm${i}`).value = idate;
+                    }
+                    getData(i, `${idate}-${document.getElementById(`dd${i}`).value}`).then((d) => out[i - 1].innerHTML = d["OUTPUT"].map(q => `<div>${q}</div>`).join(""));
+                }
+            };
+
+            document.getElementById(`dd${i}`).onchange = () => {
+                if (!isNaN(document.getElementById(`dd${i}`).value)) {
+                    let idate = Number(document.getElementById(`dd${i}`).value).toString();
+                    if (document.getElementById(`dd${i}`).value.length < 2) {
+                        idate = "0" + document.getElementById(`dd${i}`).value;
+                        document.getElementById(`dd${i}`).value = idate;
+                    }
+                    if (Number(document.getElementById(`dd${i}`).value) < 1) {
+                        idate = "01";
+                        document.getElementById(`dd${i}`).value = idate;
+                    }
+                    if (Number(document.getElementById(`dd${i}`).value) > 31) {
+                        idate = "31";
+                        document.getElementById(`dd${i}`).value = idate;
+                    }
+                    getData(i, `${document.getElementById(`mm${i}`).value}-${idate}`).then((d) => out[i - 1].innerHTML = d["OUTPUT"].map(q => `<div>${q}</div>`).join(""));
+                }
+            }
         }
-        if (Number(dd.value) < 1) {
-            idate = "01";
-            dd.value = idate;
+        else if (i === 10) {
+            getData(i, `${base_date}`).then((d) => out[i - 1].innerHTML = d["type"][0]);
         }
-        if (Number(dd.value) > 31) {
-            idate = "31";
-            dd.value = idate;
-        }
-        getData(`${mm.value}-${idate}`).then((d) => out2.innerHTML = d["OUTPUT"].map(q => `<div>${q}</div>`).join(""));
-    }
-};
+    });
+
+}
 
 function open_popup(id) {
     let main = document.getElementsByTagName("body")[0];
