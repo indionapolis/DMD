@@ -1,20 +1,6 @@
-let is_mobile = screen.width <= 450 ? 1 : 0;
 let base_date = "07-01";
 let out = [];
 
-// for popup
-let start_top, start_left, start_width, start_height;
-let end_top, end_left, diff_left, diff_top;
-let end_width = is_mobile ? 90 : 630, end_height;
-let height_val = is_mobile ? "vh" : "px", width_val = is_mobile ? "vw" : "px";
-let current_crootilka_deg = 210;
-let current_id;
-// px value multiplied by coeff gives true vw and vh values
-let mobile_coeff_h = 100 / window.innerHeight;
-let mobile_coeff_w = 100 / window.innerWidth;
-
-// for crootilka (крутилка): offset = number
-let top_offset = 0, height_offset = 0;
 const getData = async (id, date) => {
     let d = date === undefined ? "" : `2018-${date}`;
     const q = await fetch(`https://dmd-server-app.herokuapp.com/3_${id.toString()}/${d}`);
