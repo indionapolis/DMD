@@ -106,9 +106,9 @@ def query3_6():
 def query3_8(date):
     cursor = get_cursor(path)
     with open('{}SQL/3_8.sql'.format(BASE), 'r') as query:
-        table = cursor.execute(query.read(), [date])
+        table = cursor.execute(query.read(), [date, date])
 
-        resp = make_response(table_to_json(table), [date, date])
+        resp = make_response(table_to_json(table))
         resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
         return resp
 
