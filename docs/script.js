@@ -16,7 +16,8 @@ let mobile_coeff_w = 100 / window.innerWidth;
 // for crootilka (крутилка): offset = number
 let top_offset = 0, height_offset = 0;
 const getData = async (id, date) => {
-    const q = await fetch(`https://dmd-server-app.herokuapp.com/3_${id.toString()}/2018-${date}`);
+    let d = date === undefined ? "" : `2018-${date}`;
+    const q = await fetch(`https://dmd-server-app.herokuapp.com/3_${id.toString()}/${d}`);
     return await q.json();
 };
 
@@ -116,7 +117,7 @@ for (let i = 1; i < 11; ++i) {
             }
         }
         else if (i === 10) {
-            getData(i, `${base_date}`).then((d) => out[i - 1].innerHTML = d["type"][0]);
+            getData(i).then((d) => out[i - 1].innerHTML = d["type"][0]);
         }
     });
 
