@@ -22,6 +22,29 @@ main {
     animation-fill-mode: forwards;
 }
 
+#apocalypse {
+    column-count: 4;
+    column-gap: 20px;
+}
+
+@media only screen and (max-width: 880px) {
+    #apocalypse {
+        column-count: 3;
+    }
+}
+
+@media only screen and (max-width: 710px) {
+    #apocalypse {
+        column-count: 2;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    #apocalypse {
+        column-count: 1;
+    }
+}
+
 /* 3 main modules */
 .header {
     position: relative;

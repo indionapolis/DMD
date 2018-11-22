@@ -33,7 +33,7 @@ for (let i = 1; i < 11; ++i) {
             <div style="display: inline-block; font-weight: bold">Output</div>:
             <div id="${i}" style="width: 200px;"></div>
         `;
-        if (i === 2) {
+        if (i === 2 || i === 3 || i === 5) {
             input =
                 `
                 <div style="display: inline-block; font-weight: bold">Input</div> 
@@ -44,6 +44,15 @@ for (let i = 1; i < 11; ++i) {
                     / <input type="text" maxlength="2" minlength="2" title="Scroll this or change value manually" class="text scrollable" id="dd${i}" placeholder="dd" value="01">
                 </div>
             `;
+        }
+        else if (i === 9) {
+            input =
+                `
+                    <div style="display: inline-block; font-weight: bold">Input</div>:
+                    <div style="width: 100%; margin-bottom: 10px; margin-top: 6px;">
+                        Workshop statistics on parts being used
+                    </div>
+                `;
         }
         else if (i === 10) {
             input =
@@ -75,7 +84,9 @@ for (let i = 1; i < 11; ++i) {
         // generate outer content
         out = [...out, document.getElementById(i.toString())];
 
-        if (i === 2) {
+        out[i - 1].innerHTML = "<img style=\"height: 20px; width: 20px;margin-top:7px;\" src=\"WaitCover.gif\">"
+
+        if (i === 2 || i === 3 || i === 5) {
             getData(i, `${base_date}`).then((d) => out[i - 1].innerHTML = d["OUTPUT"].map(q => `<div style="width: 150px">${q}</div>`).join(""));
 
             document.getElementById(`mm${i}`).onchange = () => {
@@ -118,6 +129,10 @@ for (let i = 1; i < 11; ++i) {
         }
         else if (i === 10) {
             getData(i).then((d) => out[i - 1].innerHTML = d["type"][0]);
+        }
+        else if (i === 9) {
+            getData(i).then((d) => out[i - 1].innerHTML = d["workshop"]
+                .map(i => `Workshop ${i} most often requires ${d["part"][i - 1].toLowerCase()} (about ${d["average"][i - 1]} every week on average). `));
         }
     });
 
