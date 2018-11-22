@@ -9,7 +9,7 @@ repository with assignment 3
 
 ```database/script.sql``` - delete all data from tables
 
-```server/app.py``` - ```flask``` server for implemented the queries
+```server/app.py``` - ```flask``` server for the implemented queries
 
 ```SQL/DDL.sql``` - description of database models
 
