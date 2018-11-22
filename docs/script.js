@@ -84,10 +84,13 @@ for (let i = 1; i < 11; ++i) {
         // generate outer content
         out = [...out, document.getElementById(i.toString())];
 
-        out[i - 1].innerHTML = "<img style=\"height: 20px; width: 20px;margin-top:7px;\" src=\"WaitCover.gif\">"
+        out[i - 1].innerHTML = "<img style=\"height: 20px; width: 20px;margin-top:7px;\" src=\"WaitCover.gif\">";
 
         if (i === 2 || i === 3 || i === 5) {
-            getData(i, `${base_date}`).then((d) => out[i - 1].innerHTML = d["OUTPUT"].map(q => `<div style="width: 150px">${q}</div>`).join(""));
+            if (i === 2)
+                getData(i, `${base_date}`).then((d) => out[i - 1].innerHTML = d["OUTPUT"].map(q => `<div style="width: 100%">${q}</div>`).join(""));
+            else
+                getData(i, `${base_date}`).then((d) => out[i - 1].innerHTML = Object.keys(d).map(q => `<div style="width: 100%">${q}: ${d[q][0]}</div>`).join(""));
 
             document.getElementById(`mm${i}`).onchange = () => {
                 if (!isNaN(document.getElementById(`mm${i}`).value)) {

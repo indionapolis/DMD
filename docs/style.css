@@ -8,9 +8,13 @@ body {
     position: relative;
     margin: 0;
     height: 100%;
-    overflow: hidden;
+    overflow: scroll;
     font-family: ArialMT, Arial;
     font-size: 15px;
+}
+
+::-webkit-scrollbar {
+    display:none;
 }
 
 main {
