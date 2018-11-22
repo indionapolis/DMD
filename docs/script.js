@@ -103,7 +103,7 @@ for (let i = 1; i < 11; ++i) {
                 if (!isNaN(document.getElementById(`mm${i}`).value)) {
                     let idate = Number(document.getElementById(`mm${i}`).value).toString();
                     if (idate < 10) {
-                        idate = "0" + document.getElementById(`mm${i}`).value;
+                        idate = "0" + idate;
                         document.getElementById(`mm${i}`).value = idate;
                     }
                     if (Number(document.getElementById(`mm${i}`).value) < 7) {
@@ -132,7 +132,7 @@ for (let i = 1; i < 11; ++i) {
                 if (!isNaN(document.getElementById(`dd${i}`).value)) {
                     let idate = Number(document.getElementById(`dd${i}`).value).toString();
                     if (idate < 10) {
-                        idate = "0" + document.getElementById(`dd${i}`).value;
+                        idate = "0" + idate;
                         document.getElementById(`dd${i}`).value = idate;
                     }
                     if (Number(document.getElementById(`dd${i}`).value) < 1) {
