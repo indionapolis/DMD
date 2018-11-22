@@ -1,4 +1,5 @@
 let is_mobile = screen.width <= 450 ? 1 : 0;
+let base_date = "07-01";
 
 // for popup
 let start_top, start_left, start_width, start_height;
@@ -13,14 +14,57 @@ let mobile_coeff_w = 100 / window.innerWidth;
 
 // for crootilka (крутилка): offset = number
 let top_offset = 0, height_offset = 0;
-const getData = async () => {
-    const q = await fetch('https://dmd-server-app.herokuapp.com/3_2/2018-09-09');
+const getData = async (date) => {
+    const q = await fetch('https://dmd-server-app.herokuapp.com/3_2/2018-' + date);
     return await q.json();
 };
 
+// in cycle --
+
 let out2 = document.getElementById("2");
 out2.innerHTML = "loadingloadingloadingloadingloadi\nngloadingloadingloadingl\noadingloadingloadingloadingloa\ndingloadingloadingloadingloading\nloadingloadingloading\nloadingloadingloadingloa\ndingloading\nnaN";
-getData().then((d) => out2.innerHTML = d["OUTPUT"].map(q => `<div>${q}</div>`).join(""));
+getData(base_date).then((d) => out2.innerHTML = d["OUTPUT"].map(q => `<div>${q}</div>`).join(""));
+
+// --
+
+let mm = document.getElementById("mm");
+let dd = document.getElementById("dd");
+
+mm.onchange = () => {
+    if (!isNaN(mm.value)) {
+        let idate = mm.value;
+        if (mm.value.length < 2) {
+            idate = "0" + mm.value;
+        }
+        if (Number(mm.value) < 7) {
+            idate = "07";
+            mm.value = idate;
+        }
+        if (Number(mm.value) > 9) {
+            idate = "09";
+            mm.value = idate;
+        }
+        getData(`${idate}-${dd.value}`).then((d) => out2.innerHTML = d["OUTPUT"].map(q => `<div>${q}</div>`).join(""));
+    }
+};
+
+dd.onchange = () => {
+    if (!isNaN(dd.value)) {
+        let idate = dd.value;
+        if (dd.value.length < 2) {
+            idate = "0" + dd.value;
+        }
+        if (Number(dd.value) < 1) {
+            idate = "01";
+            dd.value = idate;
+        }
+        if (Number(dd.value) > 31) {
+            idate = "31";
+            dd.value = idate;
+        }
+        getData(`${mm.value}-${idate}`).then((d) => out2.innerHTML = d["OUTPUT"].map(q => `<div>${q}</div>`).join(""));
+    }
+};
 
 function open_popup(id) {
     let main = document.getElementsByTagName("body")[0];
