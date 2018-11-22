@@ -48,7 +48,7 @@ for (let i = 1; i < 11; ++i) {
         else if (i === 9) {
             input =
                 `
-                    <div style="display: inline-block; font-weight: bold">Input</div>:
+                    <div style="display: inline-block; font-weight: bold;">Input</div>:
                     <div style="width: 100%; margin-bottom: 10px; margin-top: 6px;">
                         Workshop statistics on parts being used
                     </div>
@@ -77,15 +77,17 @@ for (let i = 1; i < 11; ++i) {
             output = "";
         }
 
-
+        let j = `in${i}`;
         document.getElementById('apocalypse').innerHTML =
             `
             ${document.getElementById('apocalypse').innerHTML}
-            <div class="card rounded">
-                <div id="in1" onclick=""></div>
-                <h1 style="margin-bottom: 10px">Query 3.${i}</h1>
-                ${input}
-                ${output}
+            <div id="in${i}" class="card rounded" style="position: relative;">
+                <div style="z-index: 1; position: absolute;width:100%; height:100%; margin: -15px;border-radius: 20px" onclick="console.log(${j})"></div>
+                <div style="z-index: 2;position: relative;">
+                    <h1 style="margin-bottom: 10px">Query 3.${i}</h1>
+                    ${input}
+                    ${output}
+                </div>
             </div>
         `;
         // returns info that promise is handled
