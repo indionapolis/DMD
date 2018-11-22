@@ -30,7 +30,7 @@ for (let i = 1; i < 11; ++i) {
         let input, output;
         output =
             `
-            <div style="display: inline-block; font-weight: bold">Output</div>:
+            <div style="display: inline-block; font-weight: bold; margin-bottom: 7px;">Output</div>:
             <div id="${i}" style="width: 200px;"></div>
         `;
         if (i === 2 || i === 3 || i === 5) {
@@ -142,7 +142,9 @@ for (let i = 1; i < 11; ++i) {
         else if (i === 9) {
             getData(i).then((d) => out[i - 1].innerHTML = d["workshop"]
                 .filter(q => q < 5 )
-                .map(e => `Workshop ${e} most often requires ${d["part"][e - 1].toLowerCase()} (about ${d["average"][e - 1]} every week on average). `));
+                .map(e => `Workshop ${e} most often requires ${d["part"][e - 1].toLowerCase()} (about ${d["average"][e - 1]} every week on average). `)
+                .join("")
+            );
         }
     });
 
