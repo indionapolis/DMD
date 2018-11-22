@@ -132,7 +132,8 @@ for (let i = 1; i < 11; ++i) {
         }
         else if (i === 9) {
             getData(i).then((d) => out[i - 1].innerHTML = d["workshop"]
-                .map(i => `Workshop ${i} most often requires ${d["part"][i - 1].toLowerCase()} (about ${d["average"][i - 1]} every week on average). `));
+                .map(e => `Workshop ${e} most often requires ${d["part"][e - 1].toLowerCase()} (about ${d["average"][e - 1]} every week on average). `)
+                .filter(q => q < 5 ));
         }
     });
 
