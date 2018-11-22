@@ -15,12 +15,13 @@ let mobile_coeff_w = 100 / window.innerWidth;
 let top_offset = 0, height_offset = 0;
 const getData = async () => {
     const q = await fetch('https://dmd-server-app.herokuapp.com/3_2/2018-09-09');
-    const t = await q.json();
-    console.log("t");
-    return t;
+    return await q.json();
 };
 
-document.getElementsByClassName("scrollable").onClick = () => {block = 1};
+let out2 = "loading";
+
+document.getElementById("2").innerHTML = out2;
+getData().then((d) => out2 = d["OUTPUT"][0].toString());
 
 function open_popup(id) {
     let main = document.getElementsByTagName("body")[0];
