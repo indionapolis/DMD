@@ -19,8 +19,8 @@ const getData = async () => {
 };
 
 let out2 = document.getElementById("2");
-out2.innerHTML = "loading";
-getData().then((d) => out2.innerHTML = d["OUTPUT"].join("\n"));
+out2.innerHTML = "loadingloadingloadingloadingloadi\nngloadingloadingloadingl\noadingloadingloadingloadingloa\ndingloadingloadingloadingloading\nloadingloadingloading\nloadingloadingloadingloa\ndingloading\nnaN";
+getData().then((d) => out2.innerHTML = d["OUTPUT"].map(q => `<div>${q}</div>`).join(""));
 
 function open_popup(id) {
     let main = document.getElementsByTagName("body")[0];
