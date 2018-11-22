@@ -63,14 +63,24 @@ for (let i = 1; i < 11; ++i) {
                     </div>
                 `;
         }
+        else if (i === 6) {
+            input =
+                `
+                    <div style="display: inline-block; font-weight: bold">Input</div>:
+                    <div style="width: 100%; margin-bottom: 10px; margin-top: 6px;">
+                        Information about car travellings and the places
+                    </div>
+                `;
+        }
         else {
             input = "elvirka privet)))))))";
             output = "";
         }
 
 
-        document.getElementById('apocalypse').innerHTML +=
+        document.getElementById('apocalypse').innerHTML =
             `
+            ${document.getElementById('apocalypse').innerHTML}
             <div class="card rounded">
                 <div id="in1" onclick=""></div>
                 <h1 style="margin-bottom: 10px">Query 3.${i}</h1>
@@ -164,6 +174,25 @@ for (let i = 1; i < 11; ++i) {
                 .filter(q => q < 5 )
                 .map(e => `Workshop ${e} most often requires ${d["part"][e - 1].toLowerCase()} (about ${d["average"][e - 1]} every week on average). `)
                 .join("")
+            );
+        }
+        else if (i === 6) {
+            getData(i).then((d) =>
+                out[i - 1].innerHTML =
+                    `
+                    <div style="margin-bottom: 10px;">
+                        For morning top3 destinations are ${d["location"][0]}, ${d["location"][1]} and ${d["location"][2]}, 
+                        pick up locations are ${d["location"][3]}, ${d["location"][4]} and ${d["location"][5]}.
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        For afternoon top3 destinations are ${d["location"][6]}, ${d["location"][7]} and ${d["location"][8]}, 
+                        pick up locations are ${d["location"][9]}, ${d["location"][10]} and ${d["location"][11]}.
+                    </div>
+                    <div>
+                        For evening top3 destinations are ${d["location"][12]}, ${d["location"][13]} and ${d["location"][14]}, 
+                        pick up locations are ${d["location"][15]}, ${d["location"][16]} and ${d["location"][17]}.
+                    </div>
+                    `
             );
         }
     });
