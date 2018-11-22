@@ -33,7 +33,7 @@ for (let i = 1; i < 11; ++i) {
             <div style="display: inline-block; font-weight: bold; margin-bottom: 7px;">Output</div>:
             <div id="${i}" style="width: 200px;"></div>
         `;
-        if (i === 2 || i === 3 || i === 5) {
+        if (i === 2 || i === 3 || i === 5 || i === 8) {
             input =
                 `
                 <div style="display: inline-block; font-weight: bold">Input</div> 
@@ -86,9 +86,14 @@ for (let i = 1; i < 11; ++i) {
 
         out[i - 1].innerHTML = "<img style=\"height: 20px; width: 20px;margin-top:7px;\" src=\"WaitCover.gif\">";
 
-        if (i === 2 || i === 3 || i === 5) {
+        if (i === 2 || i === 3 || i === 5 || i === 8) {
             if (i === 2)
                 getData(i, `${base_date}`).then((d) => out[i - 1].innerHTML = d["OUTPUT"].map(q => `<div style="width: 100%">${q}</div>`).join(""));
+            else if (i === 8)
+                getData(i, `${base_date}`).then((d) => {
+                    for (let x = 0; x < d['user']; ++x)
+                        out[i - 1].innerHTML = `${out[i - 1].innerHTML}<div style="width: 100%">${d['user'][x]}: ${d['amount'][x]}</div>`
+                });
             else
                 getData(i, `${base_date}`).then((d) => out[i - 1].innerHTML = Object.keys(d).map(q => `<div style="width: 100%">${q}: ${d[q][0]}</div>`).join(""));
 
