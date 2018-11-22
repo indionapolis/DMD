@@ -82,12 +82,9 @@ for (let i = 1; i < 11; ++i) {
             `
             ${document.getElementById('apocalypse').innerHTML}
             <div id="in${i}" class="card rounded" style="position: relative;">
-                <div style="z-index: 1; position: absolute;width:100%; height:100%; margin: -15px;border-radius: 20px" onclick="console.log(${j})"></div>
-                <div style="z-index: 2;position: relative;">
-                    <h1 style="margin-bottom: 10px">Query 3.${i}</h1>
-                    ${input}
-                    ${output}
-                </div>
+                <h1 style="margin-bottom: 10px">Query 3.${i}</h1>
+                ${input}
+                ${output}
             </div>
         `;
         // returns info that promise is handled
