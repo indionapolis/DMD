@@ -91,6 +91,7 @@ for (let i = 1; i < 11; ++i) {
                 getData(i, `${base_date}`).then((d) => out[i - 1].innerHTML = d["OUTPUT"].map(q => `<div style="width: 100%">${q}</div>`).join(""));
             else if (i === 8)
                 getData(i, `${base_date}`).then((d) => {
+                    out[i - 1].innerHTML = '';
                     for (let x = 0; x < d['user']; ++x)
                         out[i - 1].innerHTML += `<div style="width: 100%">${d['user'][x]}: ${d['amount'][x]}</div>`
                 });
