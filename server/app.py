@@ -112,6 +112,17 @@ def query3_6():
         return resp
 
 
+@server.route('/3_7/')
+def query3_7():
+    cursor = get_cursor(path)
+    with open('{}SQL/3_7.sql'.format(BASE), 'r') as query:
+        table = cursor.execute(query.read())
+
+        resp = make_response(table_to_json(table))
+        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        return resp
+
+
 @server.route('/3_8/<date>')
 def query3_8(date):
     cursor = get_cursor(path)
