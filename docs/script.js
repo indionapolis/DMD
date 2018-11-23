@@ -58,6 +58,15 @@ for (let i = 1; i < 11; ++i) {
                     </div>
                 `;
         }
+        else if (i === 7) {
+            input =
+                `
+                    <div style="display: inline-block; font-weight: bold">Input</div>:
+                    <div style="width: 100%; margin-bottom: 10px; margin-top: 6px;">
+                        Order statistics
+                    </div>
+                `;
+        }
         else {
             input = "elvirka privet)))))))";
             output = "";
@@ -153,6 +162,9 @@ for (let i = 1; i < 11; ++i) {
         }
         else if (i === 10) {
             getData(i).then((d) => out[i - 1].innerHTML = d["type"][0]);
+        }
+        else if (i === 7) {
+            getData(i).then((d) => out[i - 1].innerHTML = d["car"].map((x, index) => `<div style="width: 100%">${x}: ${d["count"][index]}</div>`).join(""));
         }
         else if (i === 9) {
             getData(i).then((d) => out[i - 1].innerHTML = d["workshop"]
