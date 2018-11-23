@@ -1,6 +1,6 @@
 import time
 import os
-import requests as re
+import urllib.request as re
 import threading
 from flask import make_response
 from flask import Flask
@@ -58,6 +58,13 @@ def hello():
     resp = make_response(data)
     resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
     return resp
+
+
+@server.route('/ping')
+def resp():
+    res = make_response('hello')
+    res.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+    return res
 
 
 @server.route('/3_2/<date>')
@@ -139,8 +146,8 @@ def query3_10():
 
 def ping():
     while True:
-        re.get('https://young-tundra-15922.herokuapp.com')
-        time.sleep(300)
+        re.urlopen('https://young-tundra-15922.herokuapp.com/ping')
+        time.sleep(15)
 
 
 if __name__ == '__main__':
