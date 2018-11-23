@@ -6,7 +6,7 @@ Team members:
 
 ## GUI (Client) 
 
-[librarian.site](librarian.site) - ```javascript``` client application to access the queries
+[librarian.site](http://librarian.site) - ```javascript``` client application to access the queries
 
 ## Review
 
