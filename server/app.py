@@ -1,6 +1,6 @@
 import time
 import os
-import urllib.request as re
+import urllib
 import threading
 from flask import make_response
 from flask import Flask
@@ -146,8 +146,11 @@ def query3_10():
 
 def ping():
     while True:
-        re.urlopen('https://young-tundra-15922.herokuapp.com/ping')
-        time.sleep(15)
+        try:
+            urllib.request.urlopen('https://young-tundra-15922.herokuapp.com/ping')
+            time.sleep(15)
+        except urllib.error.HTTPError:
+            pass
 
 
 if __name__ == '__main__':
