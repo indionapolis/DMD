@@ -4,6 +4,10 @@ Team members:
 * George Poputnikov
 * Elvira Salikhova
 
+## GUI (Client) 
+
+[librarian.site](librarian.site) - ```javascript``` client application to access the queries
+
 ## Review
 
 ### ERD
