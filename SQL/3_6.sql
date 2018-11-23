@@ -1,3 +1,4 @@
+-- 3.6
 select tipe, time, location
 from (
     select * from (

@@ -6,6 +6,7 @@ from flask import make_response
 from flask import Flask
 from json import dumps
 import sqlite3
+from random import randint as ri
 
 server = Flask(__name__)
 
@@ -148,7 +149,7 @@ def ping():
     while True:
         try:
             urllib.request.urlopen('https://young-tundra-15922.herokuapp.com/ping')
-            time.sleep(15)
+            time.sleep(ri(200, 500))
         except urllib.error.HTTPError:
             pass
 
