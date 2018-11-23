@@ -171,13 +171,13 @@ CREATE TABLE Part_order
 
 ## Query implementation
 
-* 3.1
+### 3.1
 ```sql
 SELECT *
 FROM Self_driving_car
 WHERE color = 'red' AND license_plate LIKE 'AN%'
 ```
-* 3.2
+### 3.2
 ```sql
 SELECT strftime('%H',datetime) || 'h-' || strftime('%H',time(datetime, '+1 hour')) || 'h: ' || count(*) AS OUTPUT
 FROM Charge_log
@@ -185,7 +185,7 @@ WHERE date(datetime) = ? -- date parameter
 GROUP BY strftime('%H',datetime);
 ```
 
-* 3.3
+### 3.3
 ```sql
 SELECT CAST(ROUND(CAST(SUM(Morning)*100 AS float)/(SELECT CAST(COUNT(*) AS float) FROM Self_driving_car))AS int) AS Morning,
        CAST(ROUND(CAST(SUM(Afternoon)*100 AS float)/(SELECT CAST(COUNT(*) AS float) FROM Self_driving_car))AS int) AS Afternoon,
@@ -259,12 +259,12 @@ WHERE date(datetime) >= date(?) and -- date parameter
 GROUP BY car);
 ```
 
-* 3.4
+### 3.4
 ```sql
 
 ```
 
-* 3.5
+### 3.5
 ```sql
 SELECT CAST("AVG"(distance_to_user) AS INT) AS [Average distance (m)],
        CAST("AVG"(trip_duration) AS INT) AS [Average trip duration (min)]
@@ -272,7 +272,7 @@ FROM "Order"
 WHERE date(datetime) = ? -- date parameter
 ```
 
-* 3.6
+### 3.6
 ```sql
 select tipe, time, location
 from (
@@ -333,7 +333,7 @@ from (
 );
 ```
 
-* 3.7
+### 3.7
 ```sql
 select car, count(*) as count
 from "Order"
@@ -343,7 +343,7 @@ order by count
 limit cast(0.1*(select count(*) from Self_driving_car) as int);
 ```
 
-* 3.8
+### 3.8
 ```sql
 select user, sum(C) as amount from
   (
@@ -361,7 +361,7 @@ select user, sum(C) as amount from
 group by user;
 ```
 
-* 3.9
+### 3.9
 ```sql
 select workshop, cast(max(C) / 4.289 as int) as average, T as part
 from
@@ -376,7 +376,7 @@ from
 group by workshop
 ```
 
-* 3.10
+### 3.10
 ```sql
 select type
 from
