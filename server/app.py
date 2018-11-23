@@ -1,5 +1,7 @@
 import time
 import os
+import requests as re
+import threading
 from flask import make_response
 from flask import Flask
 from json import dumps
@@ -135,6 +137,13 @@ def query3_10():
         return resp
 
 
+def ping():
+    while True:
+        re.get('https://young-tundra-15922.herokuapp.com')
+        time.sleep(300)
+
+
 if __name__ == '__main__':
+    threading.Thread(target=ping).start()
     start_time = time.time()
     server.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT'))
