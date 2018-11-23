@@ -164,7 +164,7 @@ for (let i = 1; i < 11; ++i) {
             getData(i).then((d) => out[i - 1].innerHTML = d["type"][0]);
         }
         else if (i === 7) {
-            getData(i).then((d) => out[i - 1].innerHTML = d["car"].map((x, index) => `<div style="width: 100%">${x}: ${d["count"][index]}</div>`).join(""));
+            getData(i).then((d) => out[i - 1].innerHTML = d["car"].map((x, index) => `<div style="width: 100%">Car with ID ${x} was ordered ${d["count"][index]} times.</div>`).join(""));
         }
         else if (i === 9) {
             getData(i).then((d) => out[i - 1].innerHTML = d["workshop"]
