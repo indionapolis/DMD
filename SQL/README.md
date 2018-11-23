@@ -10,6 +10,8 @@ Team members:
 
 ## Review
 
+All source code and additional documentation available in ```github``` [repository](https://github.com/indionapolis/DMD)
+
 ### ERD
 ![](https://github.com/indionapolis/DMD/blob/master/src/ER.png)
 ### Schema
