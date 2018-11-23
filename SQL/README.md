@@ -6,6 +6,11 @@ Team members:
 
 ## Review
 
+### ERD
+![](https://github.com/indionapolis/DMD/blob/master/src/ER.png)
+### Schema
+![](https://github.com/indionapolis/DMD/blob/master/src/main.png)
+
 ## Data Definition
 
 ```sql
