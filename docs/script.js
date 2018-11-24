@@ -80,10 +80,20 @@ for (let i = 1; i < 11; ++i) {
                     </div>
                 `;
         }
+        else if (i === 1) {
+            input =
+                `
+                    <div style="display: inline-block; font-weight: bold">Input</div>:
+                    <div style="width: 100%; margin-bottom: 10px; margin-top: 6px;">
+                        Information about all cars
+                    </div>
+                `;
+        }
         else {
             input = "elvirka privet)))))))";
             output = "";
         }
+
         let code = "";
         switch (i) {
             case 1: code = `SELECT *\nFROM Self_driving_car\nWHERE color = 'red' AND license_plate LIKE 'AN%'`; break;
@@ -218,6 +228,12 @@ for (let i = 1; i < 11; ++i) {
             getData(i).then((d) => out[i - 1].innerHTML = d["workshop"]
                 .filter(q => q < 5 )
                 .map(e => `Workshop ${e} most often requires ${d["part"][e - 1].toLowerCase()} (about ${d["average"][e - 1]} every week on average). `)
+                .join("")
+            );
+        }
+        else if (i === 1) {
+            getData(i).then((d) => out[i - 1].innerHTML = d["cid"]
+                .map((e, index) => `<div>Car ${e} has license plate ${d["license_plate"][index]}</div>`)
                 .join("")
             );
         }
