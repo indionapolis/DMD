@@ -4,6 +4,12 @@ Team members:
 * George Poputnikov
 * Elvira Salikhova
 
+Content:
+* [GUI (Client)](#GUI-(Client))
+* [Review](#Review)
+* [Data Definition](#Data-Definition)
+* [Query implementation](#Query-implementation)
+
 ## GUI (Client) 
 
 [librarian.site](http://librarian.site) - ```javascript``` client application to access the queries
