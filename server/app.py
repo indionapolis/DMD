@@ -5,10 +5,12 @@ import threading
 from flask import make_response
 from flask import Flask
 from json import dumps
+from flask_cors import CORS
 import sqlite3
 from random import randint as ri
 
 server = Flask(__name__)
+CORS(server)
 
 start_time = 0
 
@@ -57,14 +59,12 @@ def hello():
            '<h2 style="color:red;text-align:center;font-family:\'Faster One\', cursive">' \
            'time since start up: {} min</h2>'.format(int((time.time() - start_time)//60))
     resp = make_response(data)
-    resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
     return resp
 
 
 @server.route('/ping')
 def resp():
     res = make_response('hello')
-    resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
     return res
 
 
@@ -75,7 +75,6 @@ def query3_1():
         table = cursor.execute(query.read())
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
@@ -86,7 +85,6 @@ def query3_2(date):
         table = cursor.execute(query.read(), [date])
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
@@ -97,18 +95,16 @@ def query3_3(date):
         table = cursor.execute(query.read(), [date, date])
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
-@server.route('/3_4/<date>')
-def query3_4(date):
+@server.route('/3_4/')
+def query3_4():
     cursor = get_cursor(path)
     with open('{}SQL/3_4.sql'.format(BASE), 'r') as query:
-        table = cursor.execute(query.read(), [date])
+        table = cursor.execute(query.read())
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
@@ -119,7 +115,6 @@ def query3_5(date):
         table = cursor.execute(query.read(), [date])
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
@@ -130,7 +125,6 @@ def query3_6():
         table = cursor.execute(query.read())
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
@@ -141,7 +135,6 @@ def query3_7():
         table = cursor.execute(query.read())
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
@@ -152,7 +145,6 @@ def query3_8(date):
         table = cursor.execute(query.read(), [date, date])
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
@@ -163,7 +155,6 @@ def query3_9():
         table = cursor.execute(query.read())
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
@@ -174,7 +165,6 @@ def query3_10():
         table = cursor.execute(query.read())
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
