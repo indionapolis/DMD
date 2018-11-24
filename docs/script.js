@@ -114,8 +114,8 @@ for (let i = 1; i < 11; ++i) {
             )
             .map((d, index) => `
                                 <div class="code">
-                                    <div style="position: absolute;display: inline-block; color: #ababab; word-wrap: normal;">
-                                        ${index + 1}
+                                    <div class="code_index" data-pseudo-content="${index + 1}">
+                                        
                                     </div>
                                     <div style="display: inline-block; margin-left: 20px;">
                                         ${d}
@@ -233,7 +233,7 @@ for (let i = 1; i < 11; ++i) {
         }
         else if (i === 1) {
             getData(i).then((d) => out[i - 1].innerHTML = d["cid"]
-                .map((e, index) => `<div>Car ${e} has license plate ${d["license_plate"][index]}</div>`)
+                .map((e, index) => `<div style="width: 100%;">Car ${e} has license plate ${d["license_plate"][index]}</div>`)
                 .join("")
             );
         }

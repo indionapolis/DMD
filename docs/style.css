@@ -235,6 +235,21 @@ h1 {
     margin-bottom: 15px;
 }
 
+[data-pseudo-content]::before {
+    content: attr(data-pseudo-content);
+}
+
+.code_index {
+    position: absolute;
+    display: inline-block;
+    color: #ababab;
+    word-wrap: normal;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .content {
     height: 100%;
     width: 100%;
@@ -245,22 +260,6 @@ h1 {
     -ms-backface-visibility: hidden;
     backface-visibility: hidden;
 }
-
-/*.card:hover .content {*/
-    /*-ms-transform: rotateY(180deg);*/
-    /*-webkit-transform: rotateY(180deg);*/
-    /*-moz-transform: rotateY(180deg);*/
-    /*-o-transform: rotateY(180deg);*/
-    /*transform: rotateY(180deg);*/
-/*}*/
-
-/*.card:hover .card_back {*/
-    /*-ms-transform: rotateY(0deg);*/
-    /*-webkit-transform: rotateY(0deg);*/
-    /*-moz-transform: rotateY(0deg);*/
-    /*-o-transform: rotateY(0deg);*/
-    /*transform: rotateY(0deg);*/
-/*}*/
 
 .animated {
     transition: all .9s;
