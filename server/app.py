@@ -57,14 +57,14 @@ def hello():
            '<h2 style="color:red;text-align:center;font-family:\'Faster One\', cursive">' \
            'time since start up: {} min</h2>'.format(int((time.time() - start_time)//60))
     resp = make_response(data)
-    resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+    resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
     return resp
 
 
 @server.route('/ping')
 def resp():
     res = make_response('hello')
-    res.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+    resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
     return res
 
 
@@ -75,7 +75,7 @@ def query3_1():
         table = cursor.execute(query.read())
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
@@ -86,7 +86,7 @@ def query3_2(date):
         table = cursor.execute(query.read(), [date])
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
@@ -97,7 +97,7 @@ def query3_3(date):
         table = cursor.execute(query.read(), [date, date])
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
@@ -108,7 +108,7 @@ def query3_4(date):
         table = cursor.execute(query.read(), [date])
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
@@ -119,7 +119,7 @@ def query3_5(date):
         table = cursor.execute(query.read(), [date])
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
@@ -130,7 +130,7 @@ def query3_6():
         table = cursor.execute(query.read())
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
@@ -141,7 +141,7 @@ def query3_7():
         table = cursor.execute(query.read())
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
@@ -152,7 +152,7 @@ def query3_8(date):
         table = cursor.execute(query.read(), [date, date])
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
@@ -163,7 +163,7 @@ def query3_9():
         table = cursor.execute(query.read())
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
@@ -174,7 +174,7 @@ def query3_10():
         table = cursor.execute(query.read())
 
         resp = make_response(table_to_json(table))
-        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        resp.headers['Access-Control-Allow-Origin'] = ['http://librarian.site', 'https://librarian.site']
         return resp
 
 
