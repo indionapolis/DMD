@@ -402,3 +402,17 @@ from
   )
 limit 1
 ```
+
+### ```Python``` query sample
+```python
+@server.route('/3_2/<date>')
+def query3_2(date):
+    cursor = get_cursor(path)
+    with open('{}SQL/3_2.sql'.format(BASE), 'r') as query:
+        # pure SQL implementation
+        table = cursor.execute(query.read(), [date])
+
+        resp = make_response(table_to_json(table))
+        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        return resp
+```
