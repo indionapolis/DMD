@@ -28,6 +28,6 @@ Implemented by Pavel Nikulin, Elvira Salikhova, George Poputnikov
 
 
 ## ERD
-![](https://github.com/indionapolis/DMD/blob/master/src/ER.png)
+![https://github.com/indionapolis/DMD/blob/master/src/ER.png](src/ER.png)
 ## Schema
-![](https://github.com/indionapolis/DMD/blob/master/src/main.png)
+![https://github.com/indionapolis/DMD/blob/master/src/main.png](src/main.png)
