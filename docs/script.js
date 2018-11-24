@@ -44,56 +44,38 @@ for (let i = 1; i < 11; ++i) {
                 </div>
             `;
         }
-        else if (i === 9) {
-            input =
-                `
-                    <div style="display: inline-block; font-weight: bold;">Input</div>:
-                    <div style="width: 100%; margin-bottom: 10px; margin-top: 6px;">
-                        Workshop statistics on parts being used
-                    </div>
-                `;
-        }
-        else if (i === 10) {
-            input =
-                `
-                    <div style="display: inline-block; font-weight: bold">Input</div>:
-                    <div style="width: 100%; margin-bottom: 10px; margin-top: 6px;">
-                        Cost of repairs and charging of cars
-                    </div>
-                `;
-        }
-        else if (i === 6) {
-            input =
-                `
-                    <div style="display: inline-block; font-weight: bold">Input</div>:
-                    <div style="width: 100%; margin-bottom: 10px; margin-top: 6px;">
-                        Information about car travellings and the places
-                    </div>
-                `;
-        }
-        else if (i === 7) {
-            input =
-                `
-                    <div style="display: inline-block; font-weight: bold">Input</div>:
-                    <div style="width: 100%; margin-bottom: 10px; margin-top: 6px;">
-                        Order statistics
-                    </div>
-                `;
-        }
-        else if (i === 1) {
-            input =
-                `
-                    <div style="display: inline-block; font-weight: bold">Input</div>:
-                    <div style="width: 100%; margin-bottom: 10px; margin-top: 6px;">
-                        Information about all cars
-                    </div>
-                `;
-        }
         else {
-            input = "elvirka privet)))))))";
-            output = "";
+            let info = "";
+
+            if (i === 9) {
+                info = "Workshop statistics on parts being used";
+            }
+            else if (i === 10) {
+                info = "Cost of repairs and charging of cars"
+            }
+            else if (i === 6) {
+                info = "Information about car travellings and the places";
+            }
+            else if (i === 7) {
+                info = "Order statistics";
+            }
+            else if (i === 1) {
+                info = "Information about all cars";
+            }
+            else if (i === 4) {
+                info = "Order details and username of user";
+            }
+            input =
+                `
+            <div style="display: inline-block; font-weight: bold;">Input</div>:
+            <div style="width: 100%; margin-bottom: 10px; margin-top: 6px;">
+                ${info}
+            </div>
+            `;
         }
 
+
+        // prettify
         let code = "";
         switch (i) {
             case 1: code = `SELECT *\nFROM Self_driving_car\nWHERE color = 'red' AND license_plate LIKE 'AN%'`; break;
@@ -223,6 +205,9 @@ for (let i = 1; i < 11; ++i) {
         }
         else if (i === 7) {
             getData(i).then((d) => out[i - 1].innerHTML = d["car"].map((x, index) => `<div style="width: 100%">Car with ID ${x} was ordered ${d["count"][index]} times.</div>`).join(""));
+        }
+        else if (i === 4) {
+            getData(i).then((d) => out[i - 1].innerHTML = `There was order ${d["oid"]} by ${d["user"]} that doubled payment of order that was made at ${d["datetime"]}.`);
         }
         else if (i === 9) {
             getData(i).then((d) => out[i - 1].innerHTML = d["workshop"]
