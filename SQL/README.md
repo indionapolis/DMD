@@ -1,5 +1,5 @@
 # Assignment report
-Team members:
+Team members (Group BS17-08):
 * Nikulin Pavel
 * George Poputnikov
 * Elvira Salikhova
@@ -15,6 +15,8 @@ Content:
 [librarian.site](http://librarian.site) - ```javascript``` client application to access the queries
 
 ## Review
+
+We use ```SQLite``` as a back end database engine. We implemented the structure of the database(tables with relations): converted our ER diagram into a database schema using DDL. It is important to note that our database is in third normal form. Furthermore, we populated our database with sample data for each table. For easiest way to generate data we wrote a ```Python3``` script. Backend application is written in ```Python3```. What matter here is that all queries are written only in ```SQL``` and ```Python``` is used only as server and database api. Moreover, we implemented reactive ```JavaScript``` client-side application which makes api requests to the server and shows results of the queries.
 
 All source code and additional documentation available in ```github``` [repository](https://github.com/indionapolis/DMD)
 
@@ -273,7 +275,14 @@ GROUP BY car);
 
 ### 3.4
 ```sql
-
+select actions, oid, user, datetime from (
+select count(datetime) as actions, oid, car, price, datetime, user from "Order"
+where
+  user = 'Guitarist' and
+  date(datetime) < '2018-08-01'
+group by datetime, car
+)
+where actions > 1
 ```
 
 ### 3.5

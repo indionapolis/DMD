@@ -6,6 +6,8 @@ COPY . .
 
 RUN pip install flask
 
+RUN pip install flask-cors
+
 WORKDIR /usr/src/app/server
 
 RUN adduser myuser
