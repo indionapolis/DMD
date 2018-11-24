@@ -110,7 +110,7 @@ for (let i = 1; i < 11; ++i) {
         code = code
             .split("\n")
             .map(d => d
-                .replace(/((select)|(from)|(where)|(and)|(group by)|( as )|(limit)|(union)|(order by)|(SELECT)|(FROM)|(WHERE)|(AND)|(GROUP BY)|( AS )|(LIMIT)|(UNION)|(ORDER BY)|( = )|( != )|( >= )|( <= )|(\*))/g, '<div class="red">$1</div>')
+                .replace(/((select)|(from)|(where)|(and)|(group by)|( as )|(limit)|(union)|(order by)|(SELECT)|(FROM)|(WHERE)|(AND)|(GROUP BY)|( AS )|(LIMIT)|(UNION)|(ORDER BY)|( = )|( != )|( >= )|( <= )|( time)|(or\n)|( on )|(\non )|( desc)|(inner join)|(asc))/g, '<div class="red">$1</div>')
             )
             .map((d, index) => `
                                 <div class="code">
