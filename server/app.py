@@ -68,6 +68,17 @@ def resp():
     return res
 
 
+@server.route('/3_1/')
+def query3_1():
+    cursor = get_cursor(path)
+    with open('{}SQL/3_1.sql'.format(BASE), 'r') as query:
+        table = cursor.execute(query.read())
+
+        resp = make_response(table_to_json(table))
+        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        return resp
+
+
 @server.route('/3_2/<date>')
 def query3_2(date):
     cursor = get_cursor(path)
@@ -90,6 +101,17 @@ def query3_3(date):
         return resp
 
 
+@server.route('/3_4/<date>')
+def query3_4(date):
+    cursor = get_cursor(path)
+    with open('{}SQL/3_4.sql'.format(BASE), 'r') as query:
+        table = cursor.execute(query.read(), [date])
+
+        resp = make_response(table_to_json(table))
+        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        return resp
+
+
 @server.route('/3_5/<date>')
 def query3_5(date):
     cursor = get_cursor(path)
@@ -105,6 +127,17 @@ def query3_5(date):
 def query3_6():
     cursor = get_cursor(path)
     with open('{}SQL/3_6.sql'.format(BASE), 'r') as query:
+        table = cursor.execute(query.read())
+
+        resp = make_response(table_to_json(table))
+        resp.headers['Access-Control-Allow-Origin'] = 'http://librarian.site'
+        return resp
+
+
+@server.route('/3_7/')
+def query3_7():
+    cursor = get_cursor(path)
+    with open('{}SQL/3_7.sql'.format(BASE), 'r') as query:
         table = cursor.execute(query.read())
 
         resp = make_response(table_to_json(table))

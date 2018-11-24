@@ -13,3 +13,6 @@ RUN adduser myuser
 USER myuser
 
 CMD ["python", "app.py"]
+
+#heroku container:push web -a dmd-server-app
+#heroku container:release web -a dmd-server-app
