@@ -1,7 +1,12 @@
-# DMD
-repository with assignment 3
+# Assignment 3
 
-## Usage
+Implemented by Pavel Nikulin, Elvira Salikhova, George Poputnikov
+
+## GUI
+
+![http://librarian.site](src/front.png)
+
+## Content
 
 ```database/Assignment3.sqlite``` - main database 
 
@@ -16,6 +21,11 @@ repository with assignment 3
 ```SQL/3_n (n:1-10)``` - implementation of the queries
 
 ```Dockerfile``` - setup script for deployment
+
+```docs/*``` - frontend implementation as GUI for database
+
+```docs/script.js``` - main frontend engine (pure js used)
+
 
 ## ERD
 ![](https://github.com/indionapolis/DMD/blob/master/src/ER.png)

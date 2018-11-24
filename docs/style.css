@@ -204,6 +204,14 @@ h1 {
     margin-bottom: 20px;
 }
 
+.card:hover {
+    transform: scale(1.03);
+}
+
+.card:hover > .content {
+    background: #f8f8f8;
+}
+
 .code {
     width: 100%;
     font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;

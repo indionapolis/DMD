@@ -105,6 +105,7 @@ for (let i = 1; i < 11; ++i) {
                                 </div>`)
             .join("");
 
+
         document.getElementById('apocalypse').innerHTML =
             `
             ${document.getElementById('apocalypse').innerHTML}
@@ -116,7 +117,7 @@ for (let i = 1; i < 11; ++i) {
                     ${output}
                 </div>
                 <div id="back${i}" class="card_back rounded animated">
-                    <div style="font-weight: bold;">Code:</div>
+                    <div style="font-weight: bold; color: #333; margin-bottom: 10px;">Code:</div>
                     <div onclick="end_rotate('${i}')" style="position: fixed; right: 15px; top: 17px;font-size: 10px; color: #3657ae">close</div>
                     ${code}
                 </div>
