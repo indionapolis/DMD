@@ -188,22 +188,82 @@ h1 {
     padding: 0;
 }
 
-.card {
+.red {
     display: inline-block;
-    height: auto;
-    cursor: pointer;
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 20px;
-    background: #efefef;
-    box-shadow: 0 1px 2px 0 rgba(197,186,186,0.65);
+    white-space: pre;
+    font-weight: bold;
+    color: #ff451e;
 }
 
-.card:hover {
-    background: #fff;
-    -webkit-box-shadow: 0 2px 6px 0 rgba(197,186,186,0.50);
-    -moz-box-shadow: 0 2px 6px 0 rgba(197,186,186,0.50);
-    box-shadow: 0 2px 6px 0 rgba(197,186,186,0.50);
+.card {
+    display: inline-block;
+    height: 100%;
+    cursor: pointer;
+    width: 100%;
+    background: transparent;
+    margin-bottom: 20px;
+}
+
+.code {
+    width: 100%;
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+    margin-top: 2px;
+    color: #0c0c0c;
+    font-size: 12px;
+}
+
+.card_back {
+    position: absolute;
+    overflow: scroll;
+    top: 0;
+    padding: 15px;
+    background: #f3f3f3;
+    height: 100%;
+    width: 100%;
+    -ms-transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.card_back > :last-child {
+    margin-bottom: 15px;
+}
+
+.content {
+    height: 100%;
+    width: 100%;
+    padding: 15px;
+    background: #efefef;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/*.card:hover .content {*/
+    /*-ms-transform: rotateY(180deg);*/
+    /*-webkit-transform: rotateY(180deg);*/
+    /*-moz-transform: rotateY(180deg);*/
+    /*-o-transform: rotateY(180deg);*/
+    /*transform: rotateY(180deg);*/
+/*}*/
+
+/*.card:hover .card_back {*/
+    /*-ms-transform: rotateY(0deg);*/
+    /*-webkit-transform: rotateY(0deg);*/
+    /*-moz-transform: rotateY(0deg);*/
+    /*-o-transform: rotateY(0deg);*/
+    /*transform: rotateY(0deg);*/
+/*}*/
+
+.animated {
+    transition: all .9s;
 }
 
 .card > .card_icon {
