@@ -4,7 +4,7 @@ Implemented by Pavel Nikulin, Elvira Salikhova, George Poputnikov
 
 ## GUI
 
-![http://librarian.site](src/client.png)
+[![See implementation](src/client.png)](http://librarian.site)
 
 ## Content
 
