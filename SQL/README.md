@@ -16,7 +16,7 @@ Content:
 
 ## Review
 
-We use SQLite as a back end database engine. We implemented the structure of the database(tables with relations): converted our ER diagrams into a real database using DDL. It is important to note that our database is in third normal form. Furthermore, we populated our database with sample data for each table. For easiest way to generate data we wrote a Python3 script. Backend application is written in Python3. What matter here is that all queries are written only in SQL and Python is used only as server and database api. Moreover, we implemented reactive JavaScript client-side application which makes api requests to the server and shows results of the queries.
+We use ```SQLite``` as a back end database engine. We implemented the structure of the database(tables with relations): converted our ER diagrams into a real database using DDL. It is important to note that our database is in third normal form. Furthermore, we populated our database with sample data for each table. For easiest way to generate data we wrote a ```Python3``` script. Backend application is written in ```Python3```. What matter here is that all queries are written only in ```SQL``` and ```Python``` is used only as server and database api. Moreover, we implemented reactive ```JavaScript``` client-side application which makes api requests to the server and shows results of the queries.
 
 All source code and additional documentation available in ```github``` [repository](https://github.com/indionapolis/DMD)
 
