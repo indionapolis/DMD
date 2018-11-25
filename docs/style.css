@@ -197,19 +197,15 @@ h1 {
 
 .card {
     display: inline-block;
-    perspective: 600px;
     height: 100%;
     cursor: pointer;
     width: 100%;
     background: transparent;
     margin-bottom: 20px;
-    transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
 }
 
 .card:hover {
     transform: scale(1.03);
-    z-index: 1000;
 }
 
 .card:hover > .content {
@@ -241,8 +237,6 @@ h1 {
     -moz-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
     backface-visibility: hidden;
-    transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
 }
 
 .card_back > :last-child {
@@ -273,15 +267,10 @@ h1 {
     -moz-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
     backface-visibility: hidden;
-
-    transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
 }
 
 .animated {
     transition: all .9s;
-    transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
 }
 
 .card > .card_icon {

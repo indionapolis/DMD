@@ -10,15 +10,13 @@ const getData = async (id, date) => {
 function start_rotate(id) {
     let el = document.getElementById(`content${id}`);
     let e = document.getElementById(`back${id}`);
-    e.style.overflow = "scroll";
-    e.style.transform = "rotateY(360deg)";
+    e.style.transform = "rotateY(0deg)";
     el.style.transform = "rotateY(180deg)";
 }
 
 function end_rotate(id) {
     let el = document.getElementById(`content${id}`);
     let e = document.getElementById(`back${id}`);
-    e.style.overflow = "hidden";
     e.style.transform = "rotateY(180deg)";
     el.style.transform = "rotateY(0deg)";
 }
