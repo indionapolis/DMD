@@ -20,6 +20,8 @@ Implemented by Pavel Nikulin, Elvira Salikhova, George Poputnikov
 
 ```SQL/3_n (n:1-10)``` - implementation of the queries
 
+```SQL/README.md``` - project full report
+
 ```Dockerfile``` - setup script for deployment
 
 ```docs/*``` - frontend implementation as GUI for database
