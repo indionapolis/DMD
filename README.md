@@ -2,10 +2,6 @@
 
 Implemented by Pavel Nikulin, Elvira Salikhova, George Poputnikov
 
-## GUI
-
-[![See implementation](src/client.png)](http://librarian.site)
-
 ## Content
 
 ```database/Assignment3.sqlite``` - main database 
@@ -29,7 +25,15 @@ Implemented by Pavel Nikulin, Elvira Salikhova, George Poputnikov
 ```docs/script.js``` - main frontend engine (pure js used)
 
 
+
+## GUI
+
+[![See implementation](src/client.png)](http://librarian.site)
+
 ## ERD
+
 ![https://github.com/indionapolis/DMD/blob/master/src/ER.png](src/ER.png)
+
 ## Schema
+
 ![https://github.com/indionapolis/DMD/blob/master/src/main.png](src/main.png)
