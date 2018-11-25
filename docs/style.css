@@ -226,7 +226,7 @@ h1 {
 
 .card_back {
     position: absolute;
-    overflow: scroll;
+    overflow: hidden;
     top: 0;
     padding: 15px;
     background: #f3f3f3;
