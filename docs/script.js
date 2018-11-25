@@ -10,7 +10,7 @@ const getData = async (id, date) => {
 function start_rotate(id) {
     let el = document.getElementById(`content${id}`);
     let e = document.getElementById(`back${id}`);
-    e.style.transform = "rotateY(0deg)";
+    e.style.transform = "rotateY(360deg)";
     el.style.transform = "rotateY(180deg)";
 }
 
