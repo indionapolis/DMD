@@ -1,3 +1,5 @@
 .DS_Store
 .idea/*
 docs/.idea
+Assignment3/
+server/__pycache__/
